@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 
 class CommentController extends Controller
@@ -16,7 +17,7 @@ class CommentController extends Controller
     public function index()
     {
         //
-        return view('admin.comments')->with('comments' , Comment::get());
+        return view('admin.comments',['comments' => Comment::get()] );//'user' => Auth::get(['name','id']));
     }
 
     /**
@@ -41,9 +42,10 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->content = $request->content;
         $comment->post_id = $request->post_id;
+        $comment->user_id = Auth::id();
         $comment->save();
 
-        return redirect('admin/comments');
+        return redirect('home');
     }
 
     /**

@@ -22,14 +22,6 @@ class PostsController extends Controller
     public function index()
     {
 
-        // if (Gate::denies('accessAdmin')) {
-        //     return redirect('/home');
-        // }
-
-        // if(Auth::user()->isAdmin == false){
-        //     return redirect('/home');
-        // }
-        // $posts = DB::table('posts')->get();
         $posts = Post::paginate(5);
         return view('admin.posts')->with('posts' , $posts);
     }
@@ -68,7 +60,7 @@ class PostsController extends Controller
         $post->body = $request->body;
         $post->auther = $request->auther;
         $post->category_id = $request->category_id;
-        //$post->user_id = Auth::id();
+        $post->user_id = Auth::id();
         $post->save();
         $post->tags()->attach($request->tag_id);
         return redirect('admin/posts');
@@ -82,8 +74,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        // return view('admin.showPost')->with('post' , $post);
-        //Note: This is a same way.
+
         return view('admin.showPost', ['post' => $post]);
     }
 
@@ -95,7 +86,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        // return view('admin.editPost' , ['post' => $post , 'tags' => Tag::get(['id' , 'name'])]);
+
         return view('admin.editPost')
         ->with('post' , $post)
         ->with('tags' , Tag::get(['id' , 'name']));

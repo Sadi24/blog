@@ -18,7 +18,7 @@
         </div>
 
         <div class="row">
-
+            @guest
             <div class="col-md-12">
                 @foreach ($posts as $item)
                     <div class="panel panel-default">
@@ -32,16 +32,15 @@
 
                         <div class="panel-body">
                             <p>{{$item->body}}</p>
+
                             <p>
 
-                               {{--  @foreach ($item->tags as $tag )
+                                @foreach ($item->tags as $tag )
                                Tags: <span class="label label-danger">{{$tag->name}}.</span>
-                               @endforeach  --}}
+                               @endforeach
                             </p>
                             <p>
-                                <span class="btn btn-sm btn-success">ipsum</span>
-                                <span class="btn btn-sm btn-info">Comments <span class="badge"></span></span>
-
+                                <span class="btn btn-sm btn-success">{{ $item->category->name }}</span>
                             <a href="/post/{{$item->id}}" class="btn btn-sm btn-primary">See more</a>
                             </p>
                         </div>
@@ -53,8 +52,47 @@
                 </div>
 
             </div>
+            @else
+            <div class="col-md-12">
+                @foreach ($posts as $item)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{$item->title}} <small>by Prof. {{$item->auther}}</small>
 
+                            <span class="pull-right">
+                                 {{ $item->created_at }}
+                            </span>
+                        </div>
 
+                        <div class="panel-body">
+                            <p>{{$item->body}}</p>
+
+                            <p>
+
+                                @foreach ($item->tags as $tag )
+                               Tags: <span class="label label-danger">{{$tag->name}}.</span>
+                               @endforeach
+                            </p>
+                            <p>
+                                <span class="btn btn-sm btn-success">{{ $item->category->name }}</span>
+                                <a href=" admin/comments/create " class="btn btn-sm btn-info"  >
+                                    Comments <span class="badge"></span></a>
+
+                            <a href="/post/{{$item->id}}" class="btn btn-sm btn-primary">See more</a>
+                            </p>
+                        </div>
+                    </div>
+                 @endforeach
+
+                </div>
+
+                <div class="text-center">
+                    {{$posts->links()}}
+                </div>
+
+            </div>
+
+            @endguest
 
         </div>
 

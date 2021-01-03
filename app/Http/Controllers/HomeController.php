@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Session;
 use App;
 class HomeController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     function index(){
-        $posts = DB::table('posts')->simplePaginate(5);
-        return view('home', ['posts' => $posts , 'tags' => Tag::get(['id' , 'name'])]);
+        //$posts = DB::table('posts')->simplePaginate(5);
+        return view('home', ['posts' => Post::Paginate(5)]);
     }
 
     function show($id){

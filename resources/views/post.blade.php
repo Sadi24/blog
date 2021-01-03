@@ -20,7 +20,7 @@
                     <div class="panel-body">
                         <p>{{$post->body}}</p>
                         <p>
-                            Category: <span class="label label-success">ipsum</span> <br>
+                            Category: <span class="label label-success">{{ $post->category->name }}</span> <br>
                             @foreach ($post->tags as $sadi )
                              Tags: <span class="label label-danger">{{$sadi->name}}.</span>
                             @endforeach
@@ -35,7 +35,7 @@
                 @foreach ($post->comments as $comment)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Lacey Gaylord DVM says...
+                        {{ $comment->user->name }}
 
                         <span class="pull-right">{{$comment->created_at->diffForHumans()}}</span>
                     </div>

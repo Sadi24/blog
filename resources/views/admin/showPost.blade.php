@@ -32,7 +32,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="/">
               Blog
             </a>
           </div>
@@ -107,8 +107,12 @@
                   {{$post->body}}
                 </p>
 
-                <p><strong>Category: </strong>ipsum</p>
-                <p><strong>Tags: </strong></p>
+                <p><strong>Category:</strong> {{ $post->category->name }} </p>
+                @foreach ($post->tags as $posts)
+                <p><strong>Tags:</strong>{{ $posts->name }}</p>
+
+                @endforeach
+
               </div>
             </div>
           </div>
