@@ -14,7 +14,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('post/{id}', 'HomeController@show');
 
-Route::resource('admin/posts', 'PostsController')->middleware('auth');;
+Route::resource('admin/posts', 'PostsController')->middleware('auth');
 
 Route::resource('admin/tags', 'TagsController');
 

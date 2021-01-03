@@ -32,7 +32,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="/">
                Blog
             </a>
           </div>
